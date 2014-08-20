@@ -48,6 +48,7 @@ describe "Static pages" do
     visit root_path
     click_link "About"
     expect(page).to have_title(full_title('About Us'))
+    # page.should have_selector 'title', text: full_title('About Us')
     click_link "Help"
     expect(page).to have_title(full_title('Help'))
     click_link "Contact"
