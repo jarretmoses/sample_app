@@ -1,12 +1,11 @@
 class User < ActiveRecord::Base
-	before_save { email.downcase! }
+	before_save { email.downcase! } #callback that (before save mehtod invokes) will force email to be downcased
 
 	validates :name,  presence: true, length: { maximum: 50 }
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
 	validates :email, presence: true, 
 					  format: { with: VALID_EMAIL_REGEX },
 					  uniqueness: true
 	has_secure_password
-	validates :password, length: { minimum: 6 }
+	validates :password, presence:true, length: { minimum: 6 }
 end
